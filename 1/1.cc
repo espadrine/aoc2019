@@ -16,9 +16,9 @@ int moduleFuel(int mass) {
   return f;
 }
 
-int totalFuel(vector<int> modules) {
+int totalFuel(vector<int> modules, int(*moduleFuel)(int)) {
   int f = 0;
-  for (int m: modules) { f += moduleFuel(m); }
+  for (int m: modules) { f += (*moduleFuel)(m); }
   return f;
 }
 
@@ -31,4 +31,8 @@ vector<int> loadModules() {
   return modules;
 }
 
-int main() { cout << totalFuel(loadModules()) << endl; }
+int main() {
+  vector<int> modules = loadModules();
+  cout << totalFuel(modules, moduleFuelWithoutFuel) << endl;
+  cout << totalFuel(modules, moduleFuel) << endl;
+}

@@ -1,7 +1,13 @@
 include ../.env
+DAY = 1
 
-a: 1.cc input
+run: a input
+	@<input ./a
+
+a: $(DAY).cc input
 	g++ -o $@ $<
 
 input:
-	curl -sO 'https://adventofcode.com/2019/day/1/input' -H "Cookie: session=$(AOCSESSION)"
+	curl -sO 'https://adventofcode.com/2019/day/$(DAY)/input' -H "Cookie: session=$(AOCSESSION)"
+
+.PHONY: run
